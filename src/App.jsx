@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PokeCard from "./components/PokeCard";
 
 function App(){
   const [pokemonList, setPokemonList] = useState([]);
@@ -20,10 +21,7 @@ function App(){
   return (
     <div>
       {pokemonList.map(poke => 
-        <div key={poke.id}>
-          <img src={poke.sprites.front_default} alt={poke.name}/>
-          <p>{poke.name}</p>
-        </div>
+        <PokeCard key={poke.id} id={poke.id} name={poke.name} sprite={poke.sprites.front_default}/>
       )}
     </div>
   );
