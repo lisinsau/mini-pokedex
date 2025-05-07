@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PokeCard from "./components/PokeCard";
+import "./App.css";
 
 function App(){
   const [pokemonList, setPokemonList] = useState([]);
@@ -19,11 +20,14 @@ function App(){
   }, []);
 
   return (
-    <div>
-      {pokemonList.map(poke => 
-        <PokeCard key={poke.id} id={poke.id} name={poke.name} sprite={poke.sprites.front_default}/>
-      )}
-    </div>
+    <>
+      <h1>Mini Pokédex</h1>
+      <div className="pokedex-container">
+        {pokemonList.map((poke) => (
+          <PokeCard key={poke.id} id={poke.id} name={poke.name} sprite={poke.sprites.front_default}/>
+        ))}
+      </div>
+    </>
   );
 }
 

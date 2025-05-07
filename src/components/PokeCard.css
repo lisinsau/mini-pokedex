@@ -1,0 +1,40 @@
+.poke-card {
+    width: 150px;
+    cursor:pointer;
+}
+
+.poke-card:hover .poke-screen img {
+  transform: scale(1.25);
+}
+
+.poke-card:hover .poke-name {
+  color: var(--bg-color);
+}
+
+.poke-screen img, .poke-name{
+  transition: all .2s ease-out;
+}
+
+.poke-screen {
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  position: relative;
+}
+
+.poke-screen img{
+  height: 100px;
+}
+
+.poke-id{
+  margin: 5px 0px 2px 0px;
+  font-size: 0.8em;
+  font-style: italic;
+}
+
+.poke-name {
+  font-weight: bold;
+  text-transform: capitalize;
+}
