@@ -2,11 +2,14 @@ body {
     background: #f9f9f9;
     color: #2c2c2c;
     font-family: 'Arial', monospace;
-    padding: 20px;
   }
   
   h1{
     text-align: center;
+  }
+
+  .homepage-container{
+    padding: 20px;
   }
   
   .pokedex-container {

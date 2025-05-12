@@ -20,7 +20,7 @@ function Homepage(){
     }, []);
 
     return (
-        <>
+        <div className="homepage-container">
             <h1>Mini Pokédex</h1>
             <div className="pokedex-container">
                 {pokemonList.map((poke) => (
@@ -33,7 +33,7 @@ function Homepage(){
                     />
                 ))}
             </div>
-        </>
+        </div>
     );
 }
 
