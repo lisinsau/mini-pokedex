@@ -94,3 +94,20 @@
   margin-bottom: 5px;
   z-index: 10;
 }
+
+.poke-card.active .poke-screen::after {
+  opacity: 0; 
+}
+
+.poke-card.active .poke-screen img {
+  transform: scale(1.25);
+}
+
+.poke-card.active .pokeball-svg{
+  transform: rotate(-45deg);
+  opacity: .75;
+}
+
+.poke-card.active .pokeball-svg path{
+  fill: white;
+}

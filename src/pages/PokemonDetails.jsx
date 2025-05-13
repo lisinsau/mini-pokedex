@@ -1,7 +1,9 @@
+import React from "react";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import "./PokemonDetails.css";
 import StatsBar from "../components/StatsBar";
+import PokeCard from "../components/PokeCard";
 
 const typeColors = {
     fire: "#ffae76",
@@ -67,6 +69,22 @@ function adjustPokemonSprite(imgElement) {
         imgElement.style.transformOrigin = "center center";
     }
 
+function extractEvolutions(chain) {
+    const evolutions = [];
+
+    let current = chain;
+    while (current) {
+        evolutions.push(current.species.name);
+        if (current.evolves_to.length > 0) {
+            current = current.evolves_to[0]; // tu peux gérer les branches multiples si besoin
+        } else {
+            current = null;
+        }
+    }
+
+    return evolutions;
+ }
+
 function PokemonDetails(){
     const location = useLocation();
     const bgColor = location.state?.bgColor || "#ccc";
@@ -75,6 +93,8 @@ function PokemonDetails(){
     const [pokemonInfos, setPokemonInfos] = useState(1);
     const navigate = useNavigate();
     const imgRef = useRef(null);
+    const [evolutions, setEvolutions] = useState([]);
+    const [hasEvolutions, setHasEvolutions] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -90,11 +110,31 @@ function PokemonDetails(){
             const speciesRes = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
             const speciesData = await speciesRes.json();
 
+            const genderRate = speciesData.gender_rate;
+            const captureRate = speciesData.capture_rate;
             const entry = speciesData.flavor_text_entries.find(
                 (entry) => entry.language.name === "en"
             );
             const description = entry ? entry.flavor_text.replace(/\f/g, " ") : "Description non trouvée.";
-            setPokemon({ ...data, description, stats });            
+            
+            const evolutionChainUrl = speciesData.evolution_chain.url;
+            const evolutionRes = await fetch(evolutionChainUrl);
+            const evolutionData = await evolutionRes.json();
+
+            const chain = evolutionData.chain;
+            const hasEvo = chain.evolves_to.length > 0;
+            setHasEvolutions(hasEvo);
+
+            const evolutionNames = extractEvolutions(evolutionData.chain);
+
+            const fullEvolutions = await Promise.all(
+                evolutionNames.map(async name => {
+                    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+                    return await res.json();
+                })
+            );
+            setEvolutions(fullEvolutions);
+            setPokemon({ ...data, description, stats, genderRate, captureRate });            
         };
 
         fetchData();
@@ -140,6 +180,9 @@ function PokemonDetails(){
     const heightInches = heightM * 39.3701;
     const heightFeet = Math.floor(heightInches / 12);
     const remainingInches = Math.round(heightInches % 12);
+    const femaleRate = pokemon.genderRate >= 0 ? (pokemon.genderRate / 8) * 100 : null;
+    const maleRate = pokemon.genderRate >= 0 ? 100 - femaleRate : null;
+    const catchRatePercent = Math.round((pokemon.captureRate / 255) * 100);
 
     const about = (
         <div className="pokemon-about">
@@ -156,6 +199,19 @@ function PokemonDetails(){
                     <p className="metric">{weightKg} kg</p>
                 </div>
             </div>
+            <div className="measurement-row">
+                <p className="label">Gender ratio</p>
+                {pokemon.genderRate === -1 ? (
+                    <p className="imperial">Genderless</p>
+                ) : (<>
+                    <p className="male-rate"> ♂ {maleRate}% </p>
+                    <p className="female-rate"> ♀ {femaleRate}%</p></>
+                )}
+            </div>
+            <div className="measurement-row">
+                <p className="label">Capture rate</p>
+                <p className="catch-rate">{catchRatePercent}%</p>
+            </div>
         </div>
     );
 
@@ -170,14 +226,31 @@ function PokemonDetails(){
         </div>
     );
 
-    const moves = (
-        <div>Moves</div>
+    const evolution = (
+        <div className="pokemon-evolution">
+            {hasEvolutions 
+                ? <>{evolutions.map((poke, index) => (
+                    <React.Fragment key={poke.id}>
+                        <PokeCard
+                            
+                            id={poke.id}
+                            name={poke.name}
+                            sprite={poke.sprites.versions["generation-v"]["black-white"].front_default}
+                            types={poke.types}
+                            isActive={poke.id.toString() === id}/>
+                        {index < evolutions.length - 1 && (
+                            <span className="evolution-arrow">↓</span>
+                        )}
+                    </React.Fragment>
+                ))}</>
+                : <p>This Pokemon has no evolution.</p>}
+        </div>
     );
 
     return(
         <div className="pokemon-detail" style={{ "--bg-color": bgColor, "--type-color" : typeColor, "--type2-color" : type2Color}}>
             <div className="pokemon-header">
-                <button onClick={() => navigate(-1)}>Retour</button>
+                <button onClick={() => navigate("/")}>Retour</button>
                 <h1>{pokemon.name}</h1>
                 <p>{formattedId}</p>
             </div>
@@ -214,14 +287,14 @@ function PokemonDetails(){
                     <div className="button-container">
                         <button className={pokemonInfos === 1 ? "active" : ""} onClick={() => setPokemonInfos(1)}>About</button>
                         <button className={pokemonInfos === 2 ? "active" : ""} onClick={() => setPokemonInfos(2)}>Status</button>
-                        <button className={pokemonInfos === 3 ? "active" : ""} onClick={() => setPokemonInfos(3)}>Moves</button>
+                        <button className={pokemonInfos === 3 ? "active" : ""} onClick={() => setPokemonInfos(3)}>Evolution</button>
                     </div>
                     <div style={{width: "100%", maxWidth: "600px"}}>
                         {pokemonInfos === 1
                             ? about
                             : pokemonInfos === 2
                                 ? status
-                                : moves}
+                                : evolution}
                     </div>
                     
                 </div>

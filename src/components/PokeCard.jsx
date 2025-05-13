@@ -49,7 +49,7 @@ function PokeCard(props){
     const mainType = props.types[0].type.name;
     const typeColor = typeColors[mainType] || "#AAA";
     let type2Color;
-    
+
     if(props.types[1]){
         const secondType = props.types[1].type.name;
         type2Color = typeColors[secondType] || "#AAA";
@@ -106,7 +106,7 @@ function PokeCard(props){
     }, []);
 
     return(
-        <Link to={`/pokemon/${props.id}`} state={{ bgColor }} className="poke-card" id={props.id} style={{
+        <Link to={`/pokemon/${props.id}`} state={{ bgColor }} className={`poke-card ${props.isActive ? "active" : ""}`} id={props.id} style={{
             "--bg-color": bgColor,
           }}>
             <div className="poke-screen">
