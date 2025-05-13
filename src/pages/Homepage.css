@@ -1,7 +1,7 @@
 body {
     background: #f9f9f9;
     color: #2c2c2c;
-    font-family: 'Arial', monospace;
+    font-family: Gill Sans, Arial, monospace;
   }
   
   h1{
@@ -28,6 +28,7 @@ body {
   @media only screen and (max-width: 767px){
     .pokedex-container {
       margin: auto 5%;
+      justify-content:space-evenly;
     }
   }
 

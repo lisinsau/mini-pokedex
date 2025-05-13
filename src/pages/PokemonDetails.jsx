@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import "./PokemonDetails.css";
+import StatsBar from "../components/StatsBar";
 
 const typeColors = {
     fire: "#ffae76",
@@ -132,20 +133,6 @@ function PokemonDetails(){
         type2Color = typeColors[mainType] || "#AAA";
     }
 
-    
-
-    const about = (
-        <div>About</div>
-    );
-
-    const status = (
-        <div>Status</div>
-    );
-
-    const moves = (
-        <div>Moves</div>
-    );
-
     const weightKg = pokemon.weight / 10;
     const weightLbs = (weightKg * 2.20462).toFixed(1);
 
@@ -153,6 +140,39 @@ function PokemonDetails(){
     const heightInches = heightM * 39.3701;
     const heightFeet = Math.floor(heightInches / 12);
     const remainingInches = Math.round(heightInches % 12);
+
+    const about = (
+        <div className="pokemon-about">
+            <p className="pokemon-description">{pokemon.description}</p>
+            <div className="pokemon-measurements">
+                <div className="measurement-row">
+                    <p className="label">Height</p>
+                    <p className="imperial">{heightFeet}'{remainingInches}"</p>
+                    <p className="metric">{heightM} m</p>
+                </div>
+                <div className="measurement-row">
+                    <p className="label">Weight</p>
+                    <p className="imperial">{weightLbs} lbs</p>
+                    <p className="metric">{weightKg} kg</p>
+                </div>
+            </div>
+        </div>
+    );
+
+    const status = (
+        <div className="pokemon-status">
+            <StatsBar delay="0" name="hp" color="#ff5959" number={pokemon.stats.hp}/>
+            <StatsBar delay="0.1" name="atk" color="#ffae76" number={pokemon.stats.attack}/>
+            <StatsBar delay="0.2" name="def" color="#ffe171" number={pokemon.stats.defense}/>
+            <StatsBar delay="0.3" name="satk" color="#92b8f7" number={pokemon.stats["special-attack"]}/>
+            <StatsBar delay="0.4" name="sdef" color="#88db86" number={pokemon.stats["special-defense"]}/>
+            <StatsBar delay="0.5" name="spd" color="#ff93b5" number={pokemon.stats.speed}/>
+        </div>
+    );
+
+    const moves = (
+        <div>Moves</div>
+    );
 
     return(
         <div className="pokemon-detail" style={{ "--bg-color": bgColor, "--type-color" : typeColor, "--type2-color" : type2Color}}>
@@ -187,39 +207,25 @@ function PokemonDetails(){
                         )}
                     </div>
                 </div>
-                <div>
+                <div style={{display:"flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            alignItems: "center"}}>
                     <div className="button-container">
                         <button className={pokemonInfos === 1 ? "active" : ""} onClick={() => setPokemonInfos(1)}>About</button>
                         <button className={pokemonInfos === 2 ? "active" : ""} onClick={() => setPokemonInfos(2)}>Status</button>
                         <button className={pokemonInfos === 3 ? "active" : ""} onClick={() => setPokemonInfos(3)}>Moves</button>
                     </div>
-                    <div>
+                    <div style={{width: "100%", maxWidth: "600px"}}>
                         {pokemonInfos === 1
                             ? about
                             : pokemonInfos === 2
                                 ? status
                                 : moves}
                     </div>
-                    <div className="pokemon-about">
-                        <p className="pokemon-description">{pokemon.description}</p>
-                        <div className="pokemon-measurements">
-                            <div className="measurement-row">
-                                <p className="label">Height</p>
-                                <p className="imperial">{heightFeet}'{remainingInches}"</p>
-                                <p className="metric">{heightM} m</p>
-                            </div>
-                            <div className="measurement-row">
-                                <p className="label">Weight</p>
-                                <p className="imperial">{weightLbs} lbs</p>
-                                <p className="metric">{weightKg} kg</p>
-                                <p>{pokemon.stats.attack}</p>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
-            </div>
-            
-            
+            </div>            
         </div>
     )
 }
