@@ -6,7 +6,7 @@ function Homepage(){
     const [pokemonList, setPokemonList] = useState([]);
 
     useEffect(() => {
-        fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
+        fetch("https://pokeapi.co/api/v2/pokemon?limit=898")
         .then((res) => res.json())
         .then((data) => {
         const fetches = data.results.map(poke => 

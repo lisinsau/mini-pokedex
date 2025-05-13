@@ -15,8 +15,16 @@
     margin: 0px 25px;
   }
 
-  .pokemon-header button{
+  .pokemon-header svg{
     margin-right: 15px;
+    height: 30px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+  }
+
+  .pokemon-header svg:hover{
+    transform: rotate(-45deg) scale(1.2);
+    opacity: 0.85;
   }
 
   .pokemon-header h1{
@@ -252,6 +260,48 @@
   font-size: 1.5rem;
   margin: 10px;
   color: #2c2c2c;
+}
+
+.pokemon-navigation{
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  z-index: 10;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+
+.pokemon-navigation .left-arrow, .pokemon-navigation .right-arrow{
+  background-color: #f9f9f9;
+  border-radius: 50vh;
+  aspect-ratio: 1/1;
+  color:#2c2c2c;
+  padding: 10px;
+  height: 25px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  transition: all .2s ease-in-out;
+  pointer-events: auto;
+  position: absolute;
+}
+
+.pokemon-navigation .left-arrow:hover, .pokemon-navigation .right-arrow:hover{
+  opacity: 0.75;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.pokemon-navigation .left-arrow{
+  left: 15px;
+}
+
+.pokemon-navigation .right-arrow{
+  right: 15px;
+}
+
+.pokemon-navigation .right-arrow svg{
+  transform: rotate(180deg);
 }
 
 @media only screen and (max-width: 600px){
