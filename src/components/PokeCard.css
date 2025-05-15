@@ -111,3 +111,30 @@
 .poke-card.active .pokeball-svg path{
   fill: white;
 }
+
+.poke-card.loading .pokeball-svg{
+  animation: 1s ease-in-out infinite fast-rotate;
+  transition: all .2s ease-in-out;
+}
+
+.poke-card.loading svg path{
+  fill: #8d8d8d;
+}
+
+@keyframes fast-rotate{
+    0%{
+      transform: rotate(0deg);
+    }
+
+    25%{
+      transform: rotate(360deg);
+    }
+
+    500%{
+      transform: rotate(360deg);
+    }
+
+    100%{
+      transform: rotate(360deg);
+    }
+  }
