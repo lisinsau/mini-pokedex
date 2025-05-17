@@ -148,21 +148,7 @@
     width: 100%;
   }
 
-  .pokemon-main-type{
-    background : var(--type-color);
-    z-index: 15;
-    padding: 3px 10px;
-    border-radius: 50vh;
-    margin: 0px 10px;
-    text-align: center;
-    width:100px;
-    border: 1px solid white;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    transition: all .2s ease-in-out;
-  }
-
-  .pokemon-second-type{
-    background : var(--type2-color);
+  .pokemon-main-type, .pokemon-second-type{
     z-index: 15;
     padding: 3px 10px;
     border-radius: 50vh;
@@ -172,6 +158,17 @@
     border: 1px solid white;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     transition: all .2s ease-in-out;
+    text-transform: uppercase;
+  }
+
+  .pokemon-main-type{
+    background : var(--type-color);
+  }
+
+  .pokemon-second-type{
+    background : var(--type2-color);
+    margin-left: 10px;
+    
   }
 
   .button-container{

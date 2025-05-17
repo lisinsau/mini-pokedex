@@ -77,7 +77,7 @@ function PokemonVisual(props) {
 
         imgElement.style.transform = `scale(${scale}) ${isVisible ? "translateY(0px)" : "translateY(10px)"}`;
         imgElement.style.transformOrigin = "center center";
-    }, [currentSrc, isImageLoaded]);
+    }, [currentSrc, isImageLoaded, isVisible]);
 
     return (
         <div style={{position: "relative"}}>

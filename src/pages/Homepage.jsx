@@ -7,10 +7,30 @@ const totalPokemon = 1025;
 
 function Homepage(){
     const [pokemonList, setPokemonList] = useState([]);
+    const [allPokemonList, setAllPokemonList] = useState([]);
     const [page, setPage] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const loaderRef = useRef(null);
     const [hasMore, setHasMore] = useState(true);
+
+    const [searchTerm, setSearchTerm] = useState("");
+    const [debouncedSearch, setDebouncedSearch] = useState(searchTerm);
+    const isSearching = debouncedSearch.trim() !== "";
+
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            setDebouncedSearch(searchTerm);
+            if (searchTerm === "") {
+                setPokemonList([]);
+                setPage(0);
+                setHasMore(true);
+            }
+        }, 300);
+
+        return () => {
+            clearTimeout(handler);
+        };
+    }, [searchTerm]);
 
     useEffect(() => {
         const fetchPage = async () => {
@@ -58,14 +78,51 @@ function Homepage(){
             }
         };
 
-        fetchPage()
-    }, [page]);
+        if (!isSearching) {
+            fetchPage();
+        }
+    }, [page, isSearching]);
+
+    useEffect(() => {
+        
+        const fetchAll = async () => {
+
+            const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${totalPokemon}`);
+            const data = await res.json();
+
+            const details = await Promise.all(
+                data.results.map(async (poke) => {
+                    const id = poke.url.split("/").filter(Boolean).pop(); // récupère l'ID
+
+                    const res = await fetch(poke.url);
+                    const detail = await res.json();
+
+                    const spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+
+                    const img = new Image();
+                    img.src = spriteUrl;
+
+                    return {
+                        id,
+                        name: detail.name,
+                        types: detail.types.map(t => t.type.name), // récupère les types
+                        sprite: spriteUrl,
+                    };
+                })
+            );
+
+            const validDetails = details.filter(Boolean);
+            setAllPokemonList((prev) => [...prev, ...validDetails]);
+        };
+
+        fetchAll()
+    }, []);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
                 const first = entries[0];
-                if (first.isIntersecting && !isLoading && hasMore) {
+                if (first.isIntersecting && !isLoading && hasMore && !isSearching) {
                     setPage((prev) => prev + 1);
                 }
             },
@@ -78,13 +135,35 @@ function Homepage(){
         return () => {
         if (loader) observer.unobserve(loader);
         };
-    }, [isLoading, hasMore]);
+    }, [isLoading, hasMore, isSearching]);
+
+    useEffect(() => {
+        if (!isSearching && page === 0 && pokemonList.length === 0) {
+            setPage(0);
+        }
+    }, [isSearching, page, pokemonList.length]);
     
+    const filteredPokemons = isSearching
+        ? allPokemonList.filter(pokemon =>
+                pokemon.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+                pokemon.id.toString() === debouncedSearch
+            )
+        : pokemonList.slice(0, (page + 1) * limit);
+
     return (
         <div className="homepage-container">
             <h1>Mini Pokédex</h1>
+            <div className="search-div">
+                <input
+                    type="text"
+                    placeholder="Rechercher un Pokémon..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="search-input"
+                />
+            </div>
             <div className="pokedex-container">
-                {pokemonList.map((poke) => (
+                {filteredPokemons.map((poke) => (
                     <PokeCard
                         key={poke.id}
                         id={poke.id}
@@ -94,6 +173,9 @@ function Homepage(){
                     />
                 ))}
             </div>
+            {!isLoading && filteredPokemons.length === 0 && (
+                <p className="no-result">Aucun Pokémon trouvé 😢</p>
+            )}
             <div ref={loaderRef} style={{ height : 1 }}/>
             {isLoading && 
                 <div className="loader">
