@@ -29,10 +29,10 @@ function PokemonEvolution(props) {
             setHasEvolutions(hasEvo);
 
             const evolutionNames = extractEvolutions(evolutionData.chain);
-
+            console.log(evolutionNames);
             const fullEvolutions = await Promise.all(
-                evolutionNames.map(async ({ name }) => {
-                    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+                evolutionNames.map(async ({ url }) => {
+                    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${url.split("/").filter(Boolean).pop()}`);
                     return await res.json();
                 })                
             );

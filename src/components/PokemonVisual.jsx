@@ -41,9 +41,15 @@ function PokemonVisual(props) {
         if (!imgRef.current || !isImageLoaded) return;
 
         const imgElement = imgRef.current;
+
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
-
+        
+        if (imgElement.naturalWidth === 0 || imgElement.naturalHeight === 0) {
+            console.warn("Image non encore disponible pour canvas.");
+            return;
+        }
+    
         canvas.width = imgElement.naturalWidth;
         canvas.height = imgElement.naturalHeight;
         ctx.drawImage(imgElement, 0, 0);

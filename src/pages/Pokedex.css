@@ -1,0 +1,121 @@
+body {
+    background: #f9f9f9;
+    color: #2c2c2c;
+    font-family: Gill Sans, Arial, monospace;
+  }
+  
+  h1{
+    text-align: center;
+  }
+
+  .page-container{
+    padding: 20px;
+  }
+  
+  .pokedex-container {
+    margin: auto 10rem;
+    gap: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .loader{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: .75;
+    margin-bottom: 25px;
+  }
+
+  .loader svg{
+    margin: 25px 0px 10px 0px;
+    width: 50px;
+    animation: 3s ease-in-out infinite rotate;
+    transition: all .2s ease-in-out;
+  }
+
+  @keyframes rotate{
+    0%{
+      transform: rotate(0deg) scale(1);
+    }
+
+    25%{
+      transform: rotate(360deg) scale(1.2);
+    }
+
+    500%{
+      transform: rotate(360deg) scale(1);
+    }
+
+    100%{
+      transform: rotate(360deg) scale(1);
+    }
+  }
+
+  .search-div{
+    display: flex;
+    justify-content: center;
+  }
+
+  .search-input {
+    margin: 0px 20px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+  .no-result {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    color: #555;
+  }
+
+  .left-arrow{
+    aspect-ratio: 1/1;
+    height: 25px;
+    display: inline-block;
+    pointer-events: auto;
+    margin-right: 10px;
+  }
+
+  .left-arrow svg{
+    height: 25px;
+    color:#2c2c2c;
+  }
+
+  .title-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0px 10rem;
+  }
+
+  @media only screen and (max-width: 767px){
+    .pokedex-container {
+      margin: auto 5rem;
+      justify-content:space-evenly;
+    }
+
+    .title-container {
+      padding: 0px 5rem;
+    }
+  }
+
+  @media only screen and (max-width: 600px){
+    .pokedex-container {
+      margin: 0;
+    }
+
+    .title-container {
+      padding: 0px;
+    }
+  }
