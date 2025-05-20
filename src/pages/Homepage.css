@@ -1,99 +1,153 @@
 .left-arrow{
-    aspect-ratio: 1/1;
-    height: 25px;
-    display: inline-block;
-    pointer-events: auto;
-    margin-right: 10px;
+  aspect-ratio: 1/1;
+  height: 25px;
+  display: inline-block;
+  pointer-events: auto;
+  margin-right: 10px;
+}
+
+.left-arrow svg, .title-container svg{
+  height: 25px;
+  color:#2c2c2c;
+}
+
+.title-container svg {
+  margin-right: 10px;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0px 10rem;
+}
+
+.categories-container, .types-container, .generations-container{
+  margin: auto 10rem;
+}
+
+.types-container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 25px;
+}
+
+.category-container, .type-container, .generation-container{
+  background-color: #2c2c2c;
+  color: #f9f9f9;
+  padding: 25px;
+  border-radius: 50vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: opacity .2s ease-in-out;
+  text-decoration: none;
+  position: relative;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: all .3s ease-in-out;
+}
+
+.generation-container{
+  background-color: white;
+  height: 76px;
+  padding: 0px;
+  justify-content: flex-start;
+}
+
+.generation-container p{
+  color:#2c2c2c;
+  white-space: nowrap;
+  margin: 25px;
+  text-transform: capitalize;
+}
+
+.category-container, .generation-container{
+  margin: 15px 0px;
+}
+
+.category-container:hover, .type-container:hover{
+  box-shadow: 0 0 10px var(--type-color);
+}
+
+.category-container p, .type-container p{
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.type-container svg{
+  aspect-ratio: 1/1;
+  position: absolute;
+  opacity: .5;
+  right: -10px;
+  width: 75px;
+  height: 75px;
+  transition: all .3s ease-in-out;
+}
+
+.type-container:hover svg{
+  height: 25px;
+  width: 25px;
+  opacity: 1;
+  right: 25px;
+}
+
+.generation-gradient{
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, white, var(--generation-color));
+  opacity: .75;
+}
+
+.generation-img{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  transform: translateY(100%);
+  transition: all .2s ease-in-out;
+}
+
+.generation-img img{
+  margin-left: -20px;
+}
+
+.generation-container:hover .generation-img{
+  transform: translateY(0%);
+}
+
+.generation-container:hover{
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+@media only screen and (max-width: 767px){
+  .title-container{
+    padding: 0px 5rem;
   }
 
-  .left-arrow svg, .title-container svg{
-    height: 25px;
-    color:#2c2c2c;
-  }
-
-  .title-container svg {
-    margin-right: 10px;
-  }
-
-  .title-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0px 10rem;
-  }
-
-  .categories-container, .types-container{
-    margin: auto 10rem;
+  .categories-container, .types-container, .generations-container{
+    margin: 0px 5rem;
   }
 
   .types-container{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .title-container {
+    padding: 0px;
+  }
+
+  .categories-container, .types-container, .generations-container{
+    margin: 0px;
+  }
+
+  .types-container{
     grid-gap: 15px;
   }
-
-  .category-container, .type-container{
-    background-color: #2c2c2c;
-    color: #f9f9f9;
-    padding: 25px;
-    /* margin: 15px 0px; */
-    border-radius: 50vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    transition: opacity .2s ease-in-out;
-    text-decoration: none;
-    position: relative;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    transition: all .3s ease-in-out;
-  }
-
-  .category-container:hover, .type-container:hover{
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  }
-
-  .category-container p, .type-container p{
-    margin: 0;
-    text-transform: capitalize;
-  }
-
-  .type-container svg{
-    aspect-ratio: 1/1;
-    position: absolute;
-    opacity: .5;
-    right: -10px;
-    width: 75px;
-    height: 75px;
-    transition: all .3s ease-in-out;
-  }
-
-  .type-container:hover svg{
-    height: 25px;
-    width: 25px;
-    opacity: 1;
-    right: 25px;
-  }
-
-  @media only screen and (max-width: 767px){
-    .title-container{
-      padding: 0px 5rem;
-    }
-
-    .categories-container, .types-container{
-      margin: 0px 5rem;
-    }
-  }
-
-  @media only screen and (max-width: 600px){
-    .title-container {
-      padding: 0px;
-    }
-
-    .categories-container, .types-container{
-      margin: 0px;
-    }
-  }
+}

@@ -38,7 +38,7 @@ function TypesList() {
             </div>
             <div className="types-container">
                 {pokemonTypes.map(({ type, color }) => (
-                    <Link to={`/pokedex?type=${type}`} key={type} className="type-container" style={{ backgroundColor: color }}>
+                    <Link to={`/pokedex?type=${type}`} key={type} className="type-container" style={{ "--type-color" : color, backgroundColor: color }}>
                         <p>{type.charAt(0).toUpperCase() + type.slice(1)}</p>
                         <TypeIcon type={type} color="#ffffff" />
                     </Link>

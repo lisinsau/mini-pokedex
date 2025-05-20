@@ -15,6 +15,11 @@ function Homepage() {
                     <p>Types</p>
                     <img src="" alt=""/>
                 </Link>
+
+                <Link to={`/generations/`} className="category-container">
+                    <p>Generations</p>
+                    <img src="" alt=""/>
+                </Link>
             </div>            
         </div>
     )
