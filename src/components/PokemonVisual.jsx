@@ -119,9 +119,9 @@ function PokemonVisual(props) {
                 <div className="clipped-circle"></div>                    
             </div>
             <div className="pokemon-types">
-                <p className="pokemon-main-type">{props.pokemon.types[0].type.name}</p>
+                <a href={`/pokedex?type=${props.pokemon.types[0].type.name}`} className="pokemon-main-type">{props.pokemon.types[0].type.name}</a>
                 {props.pokemon.types[1] && (
-                    <p className="pokemon-second-type">{props.pokemon.types[1].type.name}</p>
+                    <a href={`/pokedex?type=${props.pokemon.types[1].type.name}`} className="pokemon-second-type">{props.pokemon.types[1].type.name}</a>
                 )}
             </div>
         </div>

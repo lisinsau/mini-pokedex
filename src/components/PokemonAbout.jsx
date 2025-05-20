@@ -12,6 +12,19 @@ function PokemonAbout(props) {
     const maleRate = props.genderRate >= 0 ? 100 - femaleRate : null;
     const catchRatePercent = Math.round((props.captureRate / 255) * 100);
 
+    const generation = props.generation.url.split("/").filter(Boolean).pop();
+    const pokemonGenerations = [
+        { number: 1, color: " #1167e9, #1EA92D, #fddf11, #f4092b", starter:[1, 4, 7]},
+        { number: 2, color: " #fdc828, white, #3699c3", starter:[152, 155, 158]},
+        { number: 3, color: " #9f0631, #3953c7, #258769", starter:[252, 255, 258]},
+        { number: 4, color: " #35327d, #fab7d0, #8e92a2", starter:[387, 390, 393]},
+        { number: 5, color: " black, white, #e76929, #03affe", starter:[495, 498, 501]},
+        { number: 6, color: " #5933db, #c31024", starter:[650, 653, 656]},
+        { number: 7, color: " #f48a26, #300c8a", starter:[722, 725, 728]},
+        { number: 8, color: " #00adef, #ED1166", starter:[810, 813, 816]},
+        { number: 9, color: " #d90c1f, #7c2880", starter:[906, 909, 912]},
+    ];
+
     return (
         <div className="pokemon-about">
             <p className="pokemon-description">{props.description}</p>
@@ -39,6 +52,11 @@ function PokemonAbout(props) {
             <div className="measurement-row">
                 <p className="label">Capture rate</p>
                 <p className="catch-rate">{catchRatePercent}%</p>
+            </div>
+            <div className="generation-link" style={{ "--generation-color" : pokemonGenerations[generation - 1].color }}>
+                <a href={`/pokedex?generation=${generation}`}>
+                    Generation {generation}
+                </a>
             </div>
         </div>
     )

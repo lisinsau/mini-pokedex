@@ -29,7 +29,6 @@ function PokemonEvolution(props) {
             setHasEvolutions(hasEvo);
 
             const evolutionNames = extractEvolutions(evolutionData.chain);
-            console.log(evolutionNames);
             const fullEvolutions = await Promise.all(
                 evolutionNames.map(async ({ url }) => {
                     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${url.split("/").filter(Boolean).pop()}`);
@@ -43,6 +42,8 @@ function PokemonEvolution(props) {
         fetchEvolutionData();
     }, [props.id, props.speciesData]);
 
+    const fallbackIds = Array.from({ length: 1025 }, (_, i) => (i + 1).toString());
+
     return (
         <div className="pokemon-evolution">
             {hasEvolutions 
@@ -54,7 +55,8 @@ function PokemonEvolution(props) {
                             name={poke.name}
                             sprite={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${poke.id}.png`}
                             types={poke.types.map(t => t.type.name)}
-                            isActive={poke.id.toString() === props.id}/>
+                            isActive={poke.id.toString() === props.id}
+                            filteredIds={fallbackIds}/>
                         {index < evolutions.length - 1 && (
                             <span className="evolution-arrow">↓</span>
                         )}

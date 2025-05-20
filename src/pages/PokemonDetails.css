@@ -148,6 +148,11 @@
     width: 100%;
   }
 
+  .pokemon-types a{
+    color:#2c2c2c;
+    text-decoration: none;
+  }
+
   .pokemon-main-type, .pokemon-second-type{
     z-index: 15;
     padding: 3px 10px;
@@ -159,6 +164,10 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     transition: all .2s ease-in-out;
     text-transform: uppercase;
+  }
+
+  .pokemon-main-type:hover, .pokemon-second-type:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   }
 
   .pokemon-main-type{
@@ -228,6 +237,29 @@
 
   .imperial, .metric{
     font-weight: bold;
+  }
+
+  .pokemon-about .generation-link{
+    width: fit-content;
+    margin-top: 15px;
+  }
+
+  .pokemon-about .generation-link a{
+    padding: 10px 15px;
+    color: #2c2c2c;
+    text-decoration: none;
+    border-radius: 50vh;
+    font-size: 0.9em;
+    background: linear-gradient(white, white) padding-box,
+              linear-gradient(to right, var(--generation-color)) border-box;
+    border-radius: 50em;
+    border: 4px solid transparent;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: all .2s ease-in-out;
+  }
+
+  .pokemon-about .generation-link:hover a{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   }
 
   .catch-rate, .male-rate, .female-rate{

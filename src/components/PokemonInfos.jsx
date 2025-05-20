@@ -25,6 +25,7 @@ function PokemonInfos(props) {
                         weight = {props.pokemon.weight}
                         genderRate = {props.pokemon.genderRate}
                         captureRate = {props.pokemon.captureRate}
+                        generation = {props.pokemon.generation}
                         />
                     : pokemonInfos === 2
                         ? <PokemonStats

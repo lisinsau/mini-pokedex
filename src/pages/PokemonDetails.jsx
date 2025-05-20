@@ -62,6 +62,7 @@ function PokemonDetails(){
 
                 const genderRate = speciesData.gender_rate;
                 const captureRate = speciesData.capture_rate;
+                const generation = speciesData.generation;
 
                 const entry = speciesData.flavor_text_entries.find(
                     (entry) => entry.language.name === "en"
@@ -74,6 +75,7 @@ function PokemonDetails(){
                     stats,
                     genderRate,
                     captureRate,
+                    generation,
                 });
 
             } catch(error) {

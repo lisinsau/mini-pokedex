@@ -214,7 +214,7 @@ function Homepage() {
                         ? `${typeFilter.charAt(0).toUpperCase() + typeFilter.slice(1)} type`
                         : generationFilter 
                             ? `Generation ${generationFilter}`
-                            : "Mini Pokédex"                    
+                            : "Full Pokédex"                    
                     }                    
                 </h1>
             </div>
