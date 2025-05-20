@@ -11,6 +11,11 @@ function Homepage() {
                 <h1>Mini Pokédex</h1>
             </div>
             <div className="categories-container">
+                <Link to={`/pokedex/`} className="category-container">
+                    <p>Full Pokedex</p>
+                    <img src="" alt=""/>
+                </Link>
+
                 <Link to={`/types/`} className="category-container">
                     <p>Types</p>
                     <img src="" alt=""/>

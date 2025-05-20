@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import "./PokemonDetails.css";
 
 import PokemonHeader from "../components/PokemonHeader";
@@ -35,6 +35,9 @@ function PokemonDetails(){
     const {id} = useParams();
     const [pokemon, setPokemon] = useState(null);
     const [speciesData, setSpeciesData] = useState(null);
+
+    const location = useLocation();
+    const filteredIds = location.state?.filteredIds;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -129,7 +132,7 @@ function PokemonDetails(){
                 name={pokemon.name}
                 id={pokemon.id}
             />
-            <PokemonNavigation id={pokemon.id}/>
+            <PokemonNavigation id={pokemon.id} validIds={filteredIds}/>
             
             <div className="pokemon-body">
                 <PokemonVisual

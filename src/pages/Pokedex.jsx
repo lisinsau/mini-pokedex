@@ -192,10 +192,17 @@ function Homepage() {
         )
         : (typeFilter || generationFilter ? pokemonList : pokemonList);
 
+        const fallbackIds = Array.from({ length: 1025 }, (_, i) => (i + 1).toString());
     return (
         <div className="page-container">
             <div className="title-container">
-                <Link to={`/`} className="left-arrow">
+                <Link to={typeFilter 
+                            ? `../types`
+                            : generationFilter 
+                                ? `../generations`
+                                : `/`               
+                        } 
+                        className="left-arrow">
                     <svg viewBox="0 0 330 330">
                         <path id="XMLID_92_" d="M111.213,165.004L250.607,25.607c5.858-5.858,5.858-15.355,0-21.213c-5.858-5.858-15.355-5.858-21.213,0.001
                         l-150,150.004C76.58,157.211,75,161.026,75,165.004c0,3.979,1.581,7.794,4.394,10.607l150,149.996
@@ -221,8 +228,15 @@ function Homepage() {
                 />
             </div>
             <div className="pokedex-container">
-                {filteredPokemons.map((poke) => (
-                    <PokeCard key={poke.id} {...poke} />
+                {
+                filteredPokemons.map((poke) => (
+                    <PokeCard key={poke.id} {...poke} filteredIds={typeFilter 
+                                                                        ? filteredPokemons.map(p => p.id)
+                                                                        : generationFilter 
+                                                                            ?filteredPokemons.map(p => p.id)
+                                                                            :fallbackIds
+                                                                    }
+                    />
                 ))}
             </div>
             {!isLoading && filteredPokemons.length === 0 && (
