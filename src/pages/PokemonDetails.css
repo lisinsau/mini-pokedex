@@ -5,27 +5,59 @@
 }
 
 .pokemon-detail .pokemon-header{
+    position: absolute;
+    z-index:10;
+    height: 75px;
+    margin: 25px 25px;
+  }
+
+  .breadcrumb{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .breadcrumb-element{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .breadcrumb .separator{
+    height: 12px;
+    transform: rotate(180deg);
+  }
+
+  .breadcrumb a{
+    margin: 0px 5px;
+    color:#2c2c2c;
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover{
+    opacity: .75;
+  }
+
+  .header-title{
     display: flex;
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
-    position: absolute;
-    z-index:10;
-    height: 75px;
-    margin: 0px 25px;
   }
 
-  .pokemon-header svg{
+  .pokemon-header .header-title svg{
     margin-right: 15px;
-    height: 30px;
-    cursor: pointer;
-    transition: all .2s ease-in-out;
+    height: 33px;
+    /* cursor: pointer;
+    transition: all .2s ease-in-out; */
   }
 
-  .pokemon-header svg:hover{
+  /* .pokemon-header .header-title svg:hover{
     transform: rotate(-45deg) scale(1.2);
     opacity: 0.85;
-  }
+  } */
 
   .pokemon-header h1{
     text-transform: capitalize;
@@ -37,7 +69,7 @@
   }
 
   .pokemon-header h1, .pokemon-header p{
-    font-size: 1.5em;
+    font-size: 2em;
     font-weight: bold;
     mix-blend-mode: difference;
   }

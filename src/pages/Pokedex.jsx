@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams, useLocation } from "react-router-dom";
 import PokeCard from "../components/PokeCard";
 import "./Pokedex.css";
 
@@ -21,6 +21,9 @@ function Homepage() {
     const generationFilter = searchParams.get("generation");
 
     const isSearching = debouncedSearch.trim() !== "";
+
+    const location = useLocation();
+    //console.log(location);
 
     useEffect(() => {
         const handler = setTimeout(() => setDebouncedSearch(searchTerm), 300);
@@ -236,7 +239,7 @@ function Homepage() {
                                                                             ?filteredPokemons.map(p => p.id)
                                                                             :fallbackIds
                                                                     }
-                    />
+                    from={location}/>
                 ))}
             </div>
             {!isLoading && filteredPokemons.length === 0 && (

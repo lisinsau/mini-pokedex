@@ -38,6 +38,7 @@ function PokemonDetails(){
 
     const location = useLocation();
     const filteredIds = location.state?.filteredIds;
+    const from = location.state?.from;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -133,8 +134,9 @@ function PokemonDetails(){
             <PokemonHeader
                 name={pokemon.name}
                 id={pokemon.id}
+                from={from}
             />
-            <PokemonNavigation id={pokemon.id} validIds={filteredIds}/>
+            <PokemonNavigation id={pokemon.id} validIds={filteredIds} from={from}/>
             
             <div className="pokemon-body">
                 <PokemonVisual

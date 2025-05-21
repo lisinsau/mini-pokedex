@@ -60,6 +60,8 @@ function PokeCard(props){
         type2Color = getTypeColor(props.types[0]);
     }
 
+    const from = props.from;
+
     useEffect(() => {
         const img = imgRef.current;
         if (!img) return;
@@ -114,7 +116,7 @@ function PokeCard(props){
             className={`poke-card ${props.isActive ? "active" : ""} ${!isReady ? "loading" : ""}`}
             id={props.id} 
             style={{ "--bg-color": bgColor }}
-            state={{ filteredIds: props.filteredIds }}
+            state={{ filteredIds: props.filteredIds, from : from }}
         >
             <div className="poke-screen">
                 <svg className="pokeball-svg" viewBox="0 0 980 978.94">
