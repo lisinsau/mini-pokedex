@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import "./Homepage.css";
 
 function Homepage() {
+    const randomId = Math.floor(Math.random() * 1025) + 1;
+
     return (
         <div style={{ padding: "20px" }}>
             <div className="title-container">
@@ -23,6 +25,11 @@ function Homepage() {
 
                 <Link to={`/generations/`} className="category-container">
                     <p>Generations</p>
+                    <img src="" alt=""/>
+                </Link>
+
+                <Link to={`/pokemon/${randomId}`}  className="category-container">
+                    <p>Random</p>
                     <img src="" alt=""/>
                 </Link>
             </div>            

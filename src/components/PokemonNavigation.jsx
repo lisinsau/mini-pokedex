@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 
 function PokemonNavigation(props){
     const ids = props.validIds;
- 
+    if (!ids || ids.length === 0) return null;
+    
     const currentIndex = ids.indexOf(String(props.id));
 
     const nextId = ids[currentIndex + 1];
