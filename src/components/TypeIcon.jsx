@@ -38,7 +38,7 @@ const iconMap = {
   fairy: FairyIcon,
 };
 
-function TypeIcon({ type, color = "#000" }) {
+function TypeIcon({ type, color = "#000", className }) {
     
     const IconComponent = iconMap[type];
 
@@ -46,6 +46,7 @@ function TypeIcon({ type, color = "#000" }) {
     
     return (
         <IconComponent
+            className={className}
             style={{
                 color: color
             }}

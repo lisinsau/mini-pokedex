@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import TypeIcon from "./TypeIcon";
 
 function PokemonVisual(props) {
     const imgRef = useRef(null);
@@ -116,7 +117,11 @@ function PokemonVisual(props) {
                             }}
                             />)}
                 </div>
-                <div className="clipped-circle"></div>                    
+                <div className="clipped-circle"></div>
+                <TypeIcon className={props.pokemon.types[1] ? "background-type1-icon" : "background-type2-icon"} type={props.pokemon.types[0].type.name} color="white"/>
+                {props.pokemon.types[1] && (
+                    <TypeIcon className="background-type2-icon" type={props.pokemon.types[1].type.name} color="white"/>
+                )}
             </div>
             <div className="pokemon-types">
                 <a href={`/pokedex?type=${props.pokemon.types[0].type.name}`} className="pokemon-main-type">{props.pokemon.types[0].type.name}</a>
