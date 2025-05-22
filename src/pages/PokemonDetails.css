@@ -1,3 +1,6 @@
+.pokemon-detail{
+  position: relative;
+}
 
 .pokemon-body{
   display: flex;
@@ -444,6 +447,19 @@
 
 .pokemon-detail.loading .button-container button{
   background: lightgray;
+}
+
+.pokemon-detail > svg{
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    z-index: 10;
+    width: 50px;
+    cursor: pointer;
+}
+
+.pokemon-detail > svg:hover path{
+  stroke: #ee1515;
 }
 
 @media only screen and (max-width: 600px){

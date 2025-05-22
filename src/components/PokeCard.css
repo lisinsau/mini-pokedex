@@ -1,8 +1,36 @@
+.poke-card-container{
+  position:relative;
+}
+
+.poke-card-container > svg{
+  position: absolute;
+  z-index:10;
+  width: 25px;
+  top: 5px;
+  left: 5px;
+  cursor: pointer;
+}
+
+.poke-card-container > svg:hover path{
+  stroke: #ee1515;
+}
+
+@keyframes ping-fast {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-ping-fast {
+  animation: ping-fast 0.4s ease-in-out;
+}
+
 .poke-card {
     width: 150px;
     cursor:pointer;
     text-decoration: none;
     color: #2c2c2c;
+    display: inline-block;
 }
 
 .poke-card .poke-screen::after, .poke-card .poke-screen img, .poke-card .poke-name, .pokeball-svg{
@@ -38,7 +66,7 @@
   z-index: 0;
 }
 
-.poke-card:hover .poke-screen::after {
+.poke-card-container:hover .poke-card .poke-screen::after {
   opacity: 0; 
 }
 
@@ -48,7 +76,7 @@
   z-index: 2;
 }
 
-.poke-card:hover .poke-screen img {
+.poke-card-container:hover .poke-card .poke-screen img {
   transform: scale(1.25);
 }
 
@@ -60,7 +88,7 @@
   filter: drop-shadow(0px 0px 15px rgb(var(--bg-color)));
 }
 
-.poke-card:hover .pokeball-svg{
+.poke-card-container:hover .poke-card .pokeball-svg{
   transform: rotate(-45deg);
   opacity: .75;
 }
@@ -69,7 +97,7 @@
   fill: rgb(var(--bg-color));
 }
 
-.poke-card:hover .pokeball-svg path{
+.poke-card-container:hover .poke-card .pokeball-svg path{
   fill: white;
 }
 

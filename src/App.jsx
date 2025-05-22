@@ -5,6 +5,7 @@ import PokemonDetails from "./pages/PokemonDetails";
 import "./App.css";
 import TypesList from "./pages/TypesList";
 import GenerationsList from "./pages/GenerationsList";
+import FavoritesPage from "./pages/FavoritesPage";
 
 function App(){
   return(
@@ -13,6 +14,7 @@ function App(){
         <Route path="/" element={<Homepage/>}/>
         <Route path="/types" element={<TypesList/>}/>
         <Route path="/generations" element={<GenerationsList/>}/>
+        <Route path="/favorites" element={<FavoritesPage/>}/>
         <Route path="/pokedex" element={<Pokedex/>}/>
         <Route path="/pokemon/:id" element={<PokemonDetails/>}/>
       </Routes>

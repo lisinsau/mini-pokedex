@@ -23,7 +23,6 @@ function Homepage() {
     const isSearching = debouncedSearch.trim() !== "";
 
     const location = useLocation();
-    //console.log(location);
 
     useEffect(() => {
         const handler = setTimeout(() => setDebouncedSearch(searchTerm), 300);
