@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# 🎮 Mini Pokedex (React)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## **🌐 [Voir le projet](https://mini-pokedex-six.vercel.app/)**
 
-## Available Scripts
+Un projet React moderne permettant de parcourir le pokédex Pokémon : exploration par types, générations, aléatoire et gestion de favoris. 🌿🔥💧
 
-In the project directory, you can run:
+![Couverture du projet](screenshots/cover.png)
 
-### `npm start`
+## 🚀 Fonctionnalités
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- ⚙️ Affichage complet du Pokédex (données issues de [PokeAPI](https://pokeapi.co))
+- 📂 Catégories par **type**, **génération**, **sélection alétoire** et **favoris**
+- 🧭 Navigation intelligente entre les Pokémon (conserve le contexte de la liste)
+- 🔍 Recherche de Pokémon par nom ou numéro
+- ❤️ Gestion des favoris (stockés dans `localStorage`)
+- 🎴 Interface responsive et légère
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📷 Aperçus
+<p>
+    <img width="19%" src="screenshots/homepage.png">
+    <img width="19%"src="screenshots/types-list.png">
+    <img width="19%"src="screenshots/generations-list.png">
+    <img width="19%"src="screenshots/favorites.png">
+    <img width="19%"src="screenshots/pokemon.png">
+</p>
 
-### `npm test`
+## 🛠️ Technologies utilisées
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [React](https://reactjs.org/)
+- [React Router](https://reactrouter.com/)
+- [PokeAPI](https://pokeapi.co/)
+- CSS
+- `localStorage` (persistance des favoris)
 
-### `npm run build`
+## 🎨 Design & inspirations
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+L'interface est **inspirée du travail de Maria Julia Barbieri**, visible ici sur Behance :  
+👉 [Pokedex UI Study – par Maria Julia Barbieri](https://www.behance.net/gallery/146710797/Pokedex-Ui-Study)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Elle a conçu un magnifique design mobile que j’ai librement **adapté à ma manière**, en imaginant également une version **responsive pour écran laptop/desktop**.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Cela m'a permis de travailler :
+- l'**adaptation d'un design mobile-first** à une expérience plus large
+- l'**autonomie dans la création d’une UI cohérente**
+- la **mise en œuvre technique avec React et CSS**
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 👋 À propos de moi
+- 📧 Email : [lilian.sinsau@gmail.com](mailto:lilian.sinsau@gmail.com)
+- 🔗 LinkedIn : [Lilian Sinsau](https://www.linkedin.com/in/lilian-sinsau)
+- 📁 Portfolio : [lilian-sinsau.atwebpages.com/](http://lilian-sinsau.atwebpages.com/)

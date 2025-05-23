@@ -53,10 +53,13 @@ function PokemonAbout(props) {
                 <p className="label">Capture rate</p>
                 <p className="catch-rate">{catchRatePercent}%</p>
             </div>
-            <div className="generation-link" style={{ "--generation-color" : pokemonGenerations[generation - 1].color }}>
-                <a href={`/pokedex?generation=${generation}`}>
-                    Generation {generation}
-                </a>
+            <div className="measurement-row" style={{ marginTop:"15px", alignItems:"center" }}>
+                <p className="label">Generation</p>
+                <div className="generation-link" style={{ "--generation-color" : pokemonGenerations[generation - 1].color }}>
+                    <a href={`/pokedex?generation=${generation}`}>
+                        Generation {generation}
+                    </a>
+                </div>
             </div>
         </div>
     )

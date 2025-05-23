@@ -37,7 +37,7 @@ function PokemonVisual(props) {
 
     }, [props.pokemon.id]);
 
-    // Redimensionne dynamiquement le sprite (optionnel)
+    // Redimensionne dynamiquement le sprite
     useEffect(() => {
         if (!imgRef.current || !isImageLoaded) return;
 
