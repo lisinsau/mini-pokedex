@@ -56,7 +56,7 @@ function FavoritesPage() {
                         C232.322,328.536,236.161,330,240,330s7.678-1.464,10.607-4.394c5.858-5.858,5.858-15.355,0-21.213L111.213,165.004z"/>
                     </svg>
                 </Link>
-                <h1>Favorites Pokemon</h1>
+                <h1 style={{ textAlign:"start" }}>Favorites Pokemon</h1>
             </div>
             <div className="search-div">
                 <input

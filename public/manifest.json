@@ -1,6 +1,6 @@
 {
   "short_name": "Mini Pokedex",
-  "name": "Browse Pokemon Pokedex",
+  "name": "Mini Pokedex",
   "icons": [
     {
       "src": "icon.svg",
@@ -8,8 +8,10 @@
       "type": "image/svg+xml"
     }
   ],
+  "dir": "ltr",
+  "lang": "en-US",
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#2c2c2c",
+  "background_color": "#f9f9f9"
 }
